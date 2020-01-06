@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPrevisionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPrevisionLabel_idPrevision}" for="idPrevision" />
+                    <h:inputText id="idPrevision" value="#{previsionController.selected.idPrevision}" title="#{bundle.EditPrevisionTitle_idPrevision}" required="true" requiredMessage="#{bundle.EditPrevisionRequiredMessage_idPrevision}"/>
+                    <h:outputLabel value="#{bundle.EditPrevisionLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{previsionController.selected.nombre}" title="#{bundle.EditPrevisionTitle_nombre}" required="true" requiredMessage="#{bundle.EditPrevisionRequiredMessage_nombre}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{previsionController.update}" value="#{bundle.EditPrevisionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPrevisionViewLink}"/>
+                <br />
+                <h:commandLink action="#{previsionController.prepareList}" value="#{bundle.EditPrevisionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/prevision/List.xhtml" value="#{bundle.EditPrevisionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

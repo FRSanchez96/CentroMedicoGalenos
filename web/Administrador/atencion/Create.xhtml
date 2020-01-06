@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAtencionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_idAten}" for="idAten" />
+                    <h:inputText id="idAten" value="#{atencionController.selected.idAten}" title="#{bundle.CreateAtencionTitle_idAten}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_idAten}"/>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{atencionController.selected.descripcion}" title="#{bundle.CreateAtencionTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_costo}" for="costo" />
+                    <h:inputText id="costo" value="#{atencionController.selected.costo}" title="#{bundle.CreateAtencionTitle_costo}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_costo}"/>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{atencionController.selected.hora}" title="#{bundle.CreateAtencionTitle_hora}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_hora}"/>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_sumatoriaComision}" for="sumatoriaComision" />
+                    <h:inputText id="sumatoriaComision" value="#{atencionController.selected.sumatoriaComision}" title="#{bundle.CreateAtencionTitle_sumatoriaComision}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_sumatoriaComision}"/>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{atencionController.selected.estado}" title="#{bundle.CreateAtencionTitle_estado}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_pacienteRut}" for="pacienteRut" />
+                    <h:selectOneMenu id="pacienteRut" value="#{atencionController.selected.pacienteRut}" title="#{bundle.CreateAtencionTitle_pacienteRut}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_pacienteRut}">
+                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_idEspe}" for="idEspe" />
+                    <h:selectOneMenu id="idEspe" value="#{atencionController.selected.idEspe}" title="#{bundle.CreateAtencionTitle_idEspe}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_idEspe}">
+                        <f:selectItems value="#{especialidadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_idBole}" for="idBole" />
+                    <h:selectOneMenu id="idBole" value="#{atencionController.selected.idBole}" title="#{bundle.CreateAtencionTitle_idBole}" >
+                        <f:selectItems value="#{boletaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAtencionLabel_idAgen}" for="idAgen" />
+                    <h:selectOneMenu id="idAgen" value="#{atencionController.selected.idAgen}" title="#{bundle.CreateAtencionTitle_idAgen}" required="true" requiredMessage="#{bundle.CreateAtencionRequiredMessage_idAgen}">
+                        <f:selectItems value="#{agendaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{atencionController.create}" value="#{bundle.CreateAtencionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{atencionController.prepareList}" value="#{bundle.CreateAtencionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/atencion/List.xhtml" value="#{bundle.CreateAtencionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

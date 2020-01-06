@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDoctorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDoctorLabel_doctorRut}"/>
+                    <h:outputText value="#{doctorController.selected.doctorRut}" title="#{bundle.ViewDoctorTitle_doctorRut}"/>
+                    <h:outputText value="#{bundle.ViewDoctorLabel_foto}"/>
+                    <h:outputText value="#{doctorController.selected.foto}" title="#{bundle.ViewDoctorTitle_foto}"/>
+                    <h:outputText value="#{bundle.ViewDoctorLabel_estado}"/>
+                    <h:outputText value="#{doctorController.selected.estado}" title="#{bundle.ViewDoctorTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewDoctorLabel_persona}"/>
+                    <h:outputText value="#{doctorController.selected.persona}" title="#{bundle.ViewDoctorTitle_persona}"/>
+                    <h:outputText value="#{bundle.ViewDoctorLabel_idHoraSem}"/>
+                    <h:outputText value="#{doctorController.selected.idHoraSem}" title="#{bundle.ViewDoctorTitle_idHoraSem}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{doctorController.destroyAndView}" value="#{bundle.ViewDoctorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDoctorEditLink}"/>
+                <br />
+                <h:commandLink action="#{doctorController.prepareCreate}" value="#{bundle.ViewDoctorCreateLink}" />
+                <br />
+                <h:commandLink action="#{doctorController.prepareList}" value="#{bundle.ViewDoctorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/doctor/List.xhtml" value="#{bundle.ViewDoctorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsuarioTipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUsuarioTipoLabel_idUsti}" for="idUsti" />
+                    <h:inputText id="idUsti" value="#{usuarioTipoController.selected.idUsti}" title="#{bundle.EditUsuarioTipoTitle_idUsti}" required="true" requiredMessage="#{bundle.EditUsuarioTipoRequiredMessage_idUsti}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioTipoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{usuarioTipoController.selected.nombre}" title="#{bundle.EditUsuarioTipoTitle_nombre}" required="true" requiredMessage="#{bundle.EditUsuarioTipoRequiredMessage_nombre}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{usuarioTipoController.update}" value="#{bundle.EditUsuarioTipoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUsuarioTipoViewLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioTipoController.prepareList}" value="#{bundle.EditUsuarioTipoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/usuarioTipo/List.xhtml" value="#{bundle.EditUsuarioTipoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

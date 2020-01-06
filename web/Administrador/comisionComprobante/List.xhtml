@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListComisionComprobanteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListComisionComprobanteEmpty}" rendered="#{comisionComprobanteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{comisionComprobanteController.items.rowCount > 0}">
+                    <h:outputText value="#{comisionComprobanteController.pagination.pageFirstItem + 1}..#{comisionComprobanteController.pagination.pageLastItem + 1}/#{comisionComprobanteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{comisionComprobanteController.previous}" value="#{bundle.Previous} #{comisionComprobanteController.pagination.pageSize}" rendered="#{comisionComprobanteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{comisionComprobanteController.next}" value="#{bundle.Next} #{comisionComprobanteController.pagination.pageSize}" rendered="#{comisionComprobanteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{comisionComprobanteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComisionComprobanteTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComisionComprobanteTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComisionComprobanteTitle_firma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.firma}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComisionComprobanteTitle_numeroComprobante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroComprobante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComisionComprobanteTitle_doctorRut}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doctorRut}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListComisionComprobanteTitle_idAten}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAten}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{comisionComprobanteController.prepareView}" value="#{bundle.ListComisionComprobanteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{comisionComprobanteController.prepareEdit}" value="#{bundle.ListComisionComprobanteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{comisionComprobanteController.destroy}" value="#{bundle.ListComisionComprobanteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{comisionComprobanteController.prepareCreate}" value="#{bundle.ListComisionComprobanteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/index.xhtml" value="#{bundle.ListComisionComprobanteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

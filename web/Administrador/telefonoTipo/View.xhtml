@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTelefonoTipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTelefonoTipoLabel_idTeti}"/>
+                    <h:outputText value="#{telefonoTipoController.selected.idTeti}" title="#{bundle.ViewTelefonoTipoTitle_idTeti}"/>
+                    <h:outputText value="#{bundle.ViewTelefonoTipoLabel_nombre}"/>
+                    <h:outputText value="#{telefonoTipoController.selected.nombre}" title="#{bundle.ViewTelefonoTipoTitle_nombre}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{telefonoTipoController.destroyAndView}" value="#{bundle.ViewTelefonoTipoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTelefonoTipoEditLink}"/>
+                <br />
+                <h:commandLink action="#{telefonoTipoController.prepareCreate}" value="#{bundle.ViewTelefonoTipoCreateLink}" />
+                <br />
+                <h:commandLink action="#{telefonoTipoController.prepareList}" value="#{bundle.ViewTelefonoTipoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/telefonoTipo/List.xhtml" value="#{bundle.ViewTelefonoTipoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

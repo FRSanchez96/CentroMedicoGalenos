@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEspecialidadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEspecialidadLabel_idEspe}" for="idEspe" />
+                    <h:inputText id="idEspe" value="#{especialidadController.selected.idEspe}" title="#{bundle.CreateEspecialidadTitle_idEspe}" required="true" requiredMessage="#{bundle.CreateEspecialidadRequiredMessage_idEspe}"/>
+                    <h:outputLabel value="#{bundle.CreateEspecialidadLabel_nombEspe}" for="nombEspe" />
+                    <h:inputText id="nombEspe" value="#{especialidadController.selected.nombEspe}" title="#{bundle.CreateEspecialidadTitle_nombEspe}" required="true" requiredMessage="#{bundle.CreateEspecialidadRequiredMessage_nombEspe}"/>
+                    <h:outputLabel value="#{bundle.CreateEspecialidadLabel_cantiModu}" for="cantiModu" />
+                    <h:inputText id="cantiModu" value="#{especialidadController.selected.cantiModu}" title="#{bundle.CreateEspecialidadTitle_cantiModu}" required="true" requiredMessage="#{bundle.CreateEspecialidadRequiredMessage_cantiModu}"/>
+                    <h:outputLabel value="#{bundle.CreateEspecialidadLabel_costeComision}" for="costeComision" />
+                    <h:inputText id="costeComision" value="#{especialidadController.selected.costeComision}" title="#{bundle.CreateEspecialidadTitle_costeComision}" required="true" requiredMessage="#{bundle.CreateEspecialidadRequiredMessage_costeComision}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{especialidadController.create}" value="#{bundle.CreateEspecialidadSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{especialidadController.prepareList}" value="#{bundle.CreateEspecialidadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/especialidad/List.xhtml" value="#{bundle.CreateEspecialidadIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

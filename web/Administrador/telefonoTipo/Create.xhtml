@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTelefonoTipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTelefonoTipoLabel_idTeti}" for="idTeti" />
+                    <h:inputText id="idTeti" value="#{telefonoTipoController.selected.idTeti}" title="#{bundle.CreateTelefonoTipoTitle_idTeti}" required="true" requiredMessage="#{bundle.CreateTelefonoTipoRequiredMessage_idTeti}"/>
+                    <h:outputLabel value="#{bundle.CreateTelefonoTipoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{telefonoTipoController.selected.nombre}" title="#{bundle.CreateTelefonoTipoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTelefonoTipoRequiredMessage_nombre}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{telefonoTipoController.create}" value="#{bundle.CreateTelefonoTipoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{telefonoTipoController.prepareList}" value="#{bundle.CreateTelefonoTipoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/telefonoTipo/List.xhtml" value="#{bundle.CreateTelefonoTipoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

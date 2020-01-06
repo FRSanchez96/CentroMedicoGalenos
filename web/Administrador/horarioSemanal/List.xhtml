@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHorarioSemanalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHorarioSemanalEmpty}" rendered="#{horarioSemanalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{horarioSemanalController.items.rowCount > 0}">
+                    <h:outputText value="#{horarioSemanalController.pagination.pageFirstItem + 1}..#{horarioSemanalController.pagination.pageLastItem + 1}/#{horarioSemanalController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{horarioSemanalController.previous}" value="#{bundle.Previous} #{horarioSemanalController.pagination.pageSize}" rendered="#{horarioSemanalController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{horarioSemanalController.next}" value="#{bundle.Next} #{horarioSemanalController.pagination.pageSize}" rendered="#{horarioSemanalController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{horarioSemanalController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorarioSemanalTitle_idHoraSem}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idHoraSem}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorarioSemanalTitle_idSucu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idSucu}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorarioSemanalTitle_horasIdHor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horasIdHor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorarioSemanalTitle_idDia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{horarioSemanalController.prepareView}" value="#{bundle.ListHorarioSemanalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{horarioSemanalController.prepareEdit}" value="#{bundle.ListHorarioSemanalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{horarioSemanalController.destroy}" value="#{bundle.ListHorarioSemanalDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{horarioSemanalController.prepareCreate}" value="#{bundle.ListHorarioSemanalCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/index.xhtml" value="#{bundle.ListHorarioSemanalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

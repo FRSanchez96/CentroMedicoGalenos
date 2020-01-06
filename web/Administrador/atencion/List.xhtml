@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAtencionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAtencionEmpty}" rendered="#{atencionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{atencionController.items.rowCount > 0}">
+                    <h:outputText value="#{atencionController.pagination.pageFirstItem + 1}..#{atencionController.pagination.pageLastItem + 1}/#{atencionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{atencionController.previous}" value="#{bundle.Previous} #{atencionController.pagination.pageSize}" rendered="#{atencionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{atencionController.next}" value="#{bundle.Next} #{atencionController.pagination.pageSize}" rendered="#{atencionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{atencionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_idAten}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAten}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_costo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_hora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hora}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_sumatoriaComision}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sumatoriaComision}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_pacienteRut}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pacienteRut}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_idEspe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEspe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_idBole}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idBole}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtencionTitle_idAgen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAgen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{atencionController.prepareView}" value="#{bundle.ListAtencionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{atencionController.prepareEdit}" value="#{bundle.ListAtencionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{atencionController.destroy}" value="#{bundle.ListAtencionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{atencionController.prepareCreate}" value="#{bundle.ListAtencionCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/index.xhtml" value="#{bundle.ListAtencionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

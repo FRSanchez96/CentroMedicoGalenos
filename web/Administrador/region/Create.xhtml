@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRegionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRegionLabel_idRegi}" for="idRegi" />
+                    <h:inputText id="idRegi" value="#{regionController.selected.idRegi}" title="#{bundle.CreateRegionTitle_idRegi}" required="true" requiredMessage="#{bundle.CreateRegionRequiredMessage_idRegi}"/>
+                    <h:outputLabel value="#{bundle.CreateRegionLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{regionController.selected.nombre}" title="#{bundle.CreateRegionTitle_nombre}" required="true" requiredMessage="#{bundle.CreateRegionRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateRegionLabel_idPais}" for="idPais" />
+                    <h:selectOneMenu id="idPais" value="#{regionController.selected.idPais}" title="#{bundle.CreateRegionTitle_idPais}" required="true" requiredMessage="#{bundle.CreateRegionRequiredMessage_idPais}">
+                        <f:selectItems value="#{paisController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{regionController.create}" value="#{bundle.CreateRegionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{regionController.prepareList}" value="#{bundle.CreateRegionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/region/List.xhtml" value="#{bundle.CreateRegionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

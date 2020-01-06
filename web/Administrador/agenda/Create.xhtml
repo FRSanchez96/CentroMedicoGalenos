@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAgendaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_idAgen}" for="idAgen" />
+                    <h:inputText id="idAgen" value="#{agendaController.selected.idAgen}" title="#{bundle.CreateAgendaTitle_idAgen}" required="true" requiredMessage="#{bundle.CreateAgendaRequiredMessage_idAgen}"/>
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{agendaController.selected.fecha}" title="#{bundle.CreateAgendaTitle_fecha}" required="true" requiredMessage="#{bundle.CreateAgendaRequiredMessage_fecha}"/>
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_idSucu}" for="idSucu" />
+                    <h:selectOneMenu id="idSucu" value="#{agendaController.selected.idSucu}" title="#{bundle.CreateAgendaTitle_idSucu}" required="true" requiredMessage="#{bundle.CreateAgendaRequiredMessage_idSucu}">
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_idModu}" for="idModu" />
+                    <h:selectOneMenu id="idModu" value="#{agendaController.selected.idModu}" title="#{bundle.CreateAgendaTitle_idModu}" required="true" requiredMessage="#{bundle.CreateAgendaRequiredMessage_idModu}">
+                        <f:selectItems value="#{moduloController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAgendaLabel_doctorRut}" for="doctorRut" />
+                    <h:selectOneMenu id="doctorRut" value="#{agendaController.selected.doctorRut}" title="#{bundle.CreateAgendaTitle_doctorRut}" required="true" requiredMessage="#{bundle.CreateAgendaRequiredMessage_doctorRut}">
+                        <f:selectItems value="#{doctorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{agendaController.create}" value="#{bundle.CreateAgendaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{agendaController.prepareList}" value="#{bundle.CreateAgendaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/agenda/List.xhtml" value="#{bundle.CreateAgendaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateComisionComprobanteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateComisionComprobanteLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{comisionComprobanteController.selected.id}" title="#{bundle.CreateComisionComprobanteTitle_id}" required="true" requiredMessage="#{bundle.CreateComisionComprobanteRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateComisionComprobanteLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{comisionComprobanteController.selected.fecha}" title="#{bundle.CreateComisionComprobanteTitle_fecha}" required="true" requiredMessage="#{bundle.CreateComisionComprobanteRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateComisionComprobanteLabel_firma}" for="firma" />
+                    <h:inputText id="firma" value="#{comisionComprobanteController.selected.firma}" title="#{bundle.CreateComisionComprobanteTitle_firma}" />
+                    <h:outputLabel value="#{bundle.CreateComisionComprobanteLabel_numeroComprobante}" for="numeroComprobante" />
+                    <h:inputText id="numeroComprobante" value="#{comisionComprobanteController.selected.numeroComprobante}" title="#{bundle.CreateComisionComprobanteTitle_numeroComprobante}" />
+                    <h:outputLabel value="#{bundle.CreateComisionComprobanteLabel_doctorRut}" for="doctorRut" />
+                    <h:selectOneMenu id="doctorRut" value="#{comisionComprobanteController.selected.doctorRut}" title="#{bundle.CreateComisionComprobanteTitle_doctorRut}" required="true" requiredMessage="#{bundle.CreateComisionComprobanteRequiredMessage_doctorRut}">
+                        <f:selectItems value="#{doctorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateComisionComprobanteLabel_idAten}" for="idAten" />
+                    <h:selectOneMenu id="idAten" value="#{comisionComprobanteController.selected.idAten}" title="#{bundle.CreateComisionComprobanteTitle_idAten}" required="true" requiredMessage="#{bundle.CreateComisionComprobanteRequiredMessage_idAten}">
+                        <f:selectItems value="#{atencionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{comisionComprobanteController.create}" value="#{bundle.CreateComisionComprobanteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{comisionComprobanteController.prepareList}" value="#{bundle.CreateComisionComprobanteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/comisionComprobante/List.xhtml" value="#{bundle.CreateComisionComprobanteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

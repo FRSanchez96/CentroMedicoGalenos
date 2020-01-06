@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHorarioSemanalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHorarioSemanalLabel_idHoraSem}"/>
+                    <h:outputText value="#{horarioSemanalController.selected.idHoraSem}" title="#{bundle.ViewHorarioSemanalTitle_idHoraSem}"/>
+                    <h:outputText value="#{bundle.ViewHorarioSemanalLabel_idSucu}"/>
+                    <h:outputText value="#{horarioSemanalController.selected.idSucu}" title="#{bundle.ViewHorarioSemanalTitle_idSucu}"/>
+                    <h:outputText value="#{bundle.ViewHorarioSemanalLabel_horasIdHor}"/>
+                    <h:outputText value="#{horarioSemanalController.selected.horasIdHor}" title="#{bundle.ViewHorarioSemanalTitle_horasIdHor}"/>
+                    <h:outputText value="#{bundle.ViewHorarioSemanalLabel_idDia}"/>
+                    <h:outputText value="#{horarioSemanalController.selected.idDia}" title="#{bundle.ViewHorarioSemanalTitle_idDia}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{horarioSemanalController.destroyAndView}" value="#{bundle.ViewHorarioSemanalDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHorarioSemanalEditLink}"/>
+                <br />
+                <h:commandLink action="#{horarioSemanalController.prepareCreate}" value="#{bundle.ViewHorarioSemanalCreateLink}" />
+                <br />
+                <h:commandLink action="#{horarioSemanalController.prepareList}" value="#{bundle.ViewHorarioSemanalShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/horarioSemanal/List.xhtml" value="#{bundle.ViewHorarioSemanalIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

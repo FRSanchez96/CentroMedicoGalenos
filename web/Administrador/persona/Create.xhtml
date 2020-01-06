@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePersonaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_rut}" for="rut" />
+                    <h:inputText id="rut" value="#{personaController.selected.rut}" title="#{bundle.CreatePersonaTitle_rut}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_rut}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_verificador}" for="verificador" />
+                    <h:inputText id="verificador" value="#{personaController.selected.verificador}" title="#{bundle.CreatePersonaTitle_verificador}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_verificador}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_nombres}" for="nombres" />
+                    <h:inputText id="nombres" value="#{personaController.selected.nombres}" title="#{bundle.CreatePersonaTitle_nombres}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_nombres}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_apellidoPaterno}" for="apellidoPaterno" />
+                    <h:inputText id="apellidoPaterno" value="#{personaController.selected.apellidoPaterno}" title="#{bundle.CreatePersonaTitle_apellidoPaterno}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_apellidoPaterno}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_apellidoMaterno}" for="apellidoMaterno" />
+                    <h:inputText id="apellidoMaterno" value="#{personaController.selected.apellidoMaterno}" title="#{bundle.CreatePersonaTitle_apellidoMaterno}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_apellidoMaterno}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_fechaNacimiento}" for="fechaNacimiento" />
+                    <h:inputText id="fechaNacimiento" value="#{personaController.selected.fechaNacimiento}" title="#{bundle.CreatePersonaTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_fechaNacimiento}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{personaController.selected.direccion}" title="#{bundle.CreatePersonaTitle_direccion}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_mail}" for="mail" />
+                    <h:inputText id="mail" value="#{personaController.selected.mail}" title="#{bundle.CreatePersonaTitle_mail}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_mail}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_contrasena}" for="contrasena" />
+                    <h:inputText id="contrasena" value="#{personaController.selected.contrasena}" title="#{bundle.CreatePersonaTitle_contrasena}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_contrasena}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_sexoId}" for="sexoId" />
+                    <h:selectOneMenu id="sexoId" value="#{personaController.selected.sexoId}" title="#{bundle.CreatePersonaTitle_sexoId}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_sexoId}">
+                        <f:selectItems value="#{sexoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_previsionId}" for="previsionId" />
+                    <h:selectOneMenu id="previsionId" value="#{personaController.selected.previsionId}" title="#{bundle.CreatePersonaTitle_previsionId}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_previsionId}">
+                        <f:selectItems value="#{previsionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_comunaId}" for="comunaId" />
+                    <h:selectOneMenu id="comunaId" value="#{personaController.selected.comunaId}" title="#{bundle.CreatePersonaTitle_comunaId}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_comunaId}">
+                        <f:selectItems value="#{comunaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonaLabel_doctor}" for="doctor" />
+                    <h:selectOneMenu id="doctor" value="#{personaController.selected.doctor}" title="#{bundle.CreatePersonaTitle_doctor}" >
+                        <f:selectItems value="#{doctorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personaController.create}" value="#{bundle.CreatePersonaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{personaController.prepareList}" value="#{bundle.CreatePersonaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/persona/List.xhtml" value="#{bundle.CreatePersonaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

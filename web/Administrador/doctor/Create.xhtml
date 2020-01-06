@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDoctorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDoctorLabel_doctorRut}" for="doctorRut" />
+                    <h:inputText id="doctorRut" value="#{doctorController.selected.doctorRut}" title="#{bundle.CreateDoctorTitle_doctorRut}" required="true" requiredMessage="#{bundle.CreateDoctorRequiredMessage_doctorRut}"/>
+                    <h:outputLabel value="#{bundle.CreateDoctorLabel_foto}" for="foto" />
+                    <h:inputTextarea rows="4" cols="30" id="foto" value="#{doctorController.selected.foto}" title="#{bundle.CreateDoctorTitle_foto}" />
+                    <h:outputLabel value="#{bundle.CreateDoctorLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{doctorController.selected.estado}" title="#{bundle.CreateDoctorTitle_estado}" />
+                    <h:outputLabel value="#{bundle.CreateDoctorLabel_persona}" for="persona" />
+                    <h:selectOneMenu id="persona" value="#{doctorController.selected.persona}" title="#{bundle.CreateDoctorTitle_persona}" required="true" requiredMessage="#{bundle.CreateDoctorRequiredMessage_persona}">
+                        <f:selectItems value="#{personaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDoctorLabel_idHoraSem}" for="idHoraSem" />
+                    <h:selectOneMenu id="idHoraSem" value="#{doctorController.selected.idHoraSem}" title="#{bundle.CreateDoctorTitle_idHoraSem}" required="true" requiredMessage="#{bundle.CreateDoctorRequiredMessage_idHoraSem}">
+                        <f:selectItems value="#{horarioSemanalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{doctorController.create}" value="#{bundle.CreateDoctorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{doctorController.prepareList}" value="#{bundle.CreateDoctorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/doctor/List.xhtml" value="#{bundle.CreateDoctorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

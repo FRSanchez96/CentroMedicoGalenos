@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHorarioSemanalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHorarioSemanalLabel_idHoraSem}" for="idHoraSem" />
+                    <h:inputText id="idHoraSem" value="#{horarioSemanalController.selected.idHoraSem}" title="#{bundle.CreateHorarioSemanalTitle_idHoraSem}" required="true" requiredMessage="#{bundle.CreateHorarioSemanalRequiredMessage_idHoraSem}"/>
+                    <h:outputLabel value="#{bundle.CreateHorarioSemanalLabel_idSucu}" for="idSucu" />
+                    <h:selectOneMenu id="idSucu" value="#{horarioSemanalController.selected.idSucu}" title="#{bundle.CreateHorarioSemanalTitle_idSucu}" required="true" requiredMessage="#{bundle.CreateHorarioSemanalRequiredMessage_idSucu}">
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateHorarioSemanalLabel_horasIdHor}" for="horasIdHor" />
+                    <h:selectOneMenu id="horasIdHor" value="#{horarioSemanalController.selected.horasIdHor}" title="#{bundle.CreateHorarioSemanalTitle_horasIdHor}" required="true" requiredMessage="#{bundle.CreateHorarioSemanalRequiredMessage_horasIdHor}">
+                        <f:selectItems value="#{horasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateHorarioSemanalLabel_idDia}" for="idDia" />
+                    <h:selectOneMenu id="idDia" value="#{horarioSemanalController.selected.idDia}" title="#{bundle.CreateHorarioSemanalTitle_idDia}" required="true" requiredMessage="#{bundle.CreateHorarioSemanalRequiredMessage_idDia}">
+                        <f:selectItems value="#{diaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{horarioSemanalController.create}" value="#{bundle.CreateHorarioSemanalSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{horarioSemanalController.prepareList}" value="#{bundle.CreateHorarioSemanalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/horarioSemanal/List.xhtml" value="#{bundle.CreateHorarioSemanalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePrevisionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePrevisionLabel_idPrevision}" for="idPrevision" />
+                    <h:inputText id="idPrevision" value="#{previsionController.selected.idPrevision}" title="#{bundle.CreatePrevisionTitle_idPrevision}" required="true" requiredMessage="#{bundle.CreatePrevisionRequiredMessage_idPrevision}"/>
+                    <h:outputLabel value="#{bundle.CreatePrevisionLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{previsionController.selected.nombre}" title="#{bundle.CreatePrevisionTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePrevisionRequiredMessage_nombre}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{previsionController.create}" value="#{bundle.CreatePrevisionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{previsionController.prepareList}" value="#{bundle.CreatePrevisionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/prevision/List.xhtml" value="#{bundle.CreatePrevisionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

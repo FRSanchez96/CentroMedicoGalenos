@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSucursalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_idSucu}" for="idSucu" />
+                    <h:inputText id="idSucu" value="#{sucursalController.selected.idSucu}" title="#{bundle.EditSucursalTitle_idSucu}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_idSucu}"/>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_nombreSucu}" for="nombreSucu" />
+                    <h:inputText id="nombreSucu" value="#{sucursalController.selected.nombreSucu}" title="#{bundle.EditSucursalTitle_nombreSucu}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_nombreSucu}"/>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{sucursalController.selected.direccion}" title="#{bundle.EditSucursalTitle_direccion}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_numeracion}" for="numeracion" />
+                    <h:inputText id="numeracion" value="#{sucursalController.selected.numeracion}" title="#{bundle.EditSucursalTitle_numeracion}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_numeracion}"/>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_costeComision}" for="costeComision" />
+                    <h:inputText id="costeComision" value="#{sucursalController.selected.costeComision}" title="#{bundle.EditSucursalTitle_costeComision}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_costeComision}"/>
+                    <h:outputLabel value="#{bundle.EditSucursalLabel_idComu}" for="idComu" />
+                    <h:selectOneMenu id="idComu" value="#{sucursalController.selected.idComu}" title="#{bundle.EditSucursalTitle_idComu}" required="true" requiredMessage="#{bundle.EditSucursalRequiredMessage_idComu}">
+                        <f:selectItems value="#{comunaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{sucursalController.update}" value="#{bundle.EditSucursalSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSucursalViewLink}"/>
+                <br />
+                <h:commandLink action="#{sucursalController.prepareList}" value="#{bundle.EditSucursalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/sucursal/List.xhtml" value="#{bundle.EditSucursalIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

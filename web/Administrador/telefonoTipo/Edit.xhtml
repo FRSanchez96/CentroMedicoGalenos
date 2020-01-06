@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTelefonoTipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTelefonoTipoLabel_idTeti}" for="idTeti" />
+                    <h:inputText id="idTeti" value="#{telefonoTipoController.selected.idTeti}" title="#{bundle.EditTelefonoTipoTitle_idTeti}" required="true" requiredMessage="#{bundle.EditTelefonoTipoRequiredMessage_idTeti}"/>
+                    <h:outputLabel value="#{bundle.EditTelefonoTipoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{telefonoTipoController.selected.nombre}" title="#{bundle.EditTelefonoTipoTitle_nombre}" required="true" requiredMessage="#{bundle.EditTelefonoTipoRequiredMessage_nombre}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{telefonoTipoController.update}" value="#{bundle.EditTelefonoTipoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTelefonoTipoViewLink}"/>
+                <br />
+                <h:commandLink action="#{telefonoTipoController.prepareList}" value="#{bundle.EditTelefonoTipoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/faces/Administrador/telefonoTipo/List.xhtml" value="#{bundle.EditTelefonoTipoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
