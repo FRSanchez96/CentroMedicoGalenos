@@ -282,6 +282,21 @@ public class ManUsuario implements DaoUsuario{
        
     }
       
+      public char[] TransformarMinu(String Palabra){
+
+	if(Palabra!=null)
+        {
+		String Cambio = Palabra.toLowerCase();
+		char[] arrayMinu = Cambio.toCharArray();
+                
+                return arrayMinu;
+        }else{
+            char[] arrayMm = null;
+            return arrayMm;
+        }
+     }
+
+      
       public  boolean validarRut(String rut) {
  
         boolean validacion = false;

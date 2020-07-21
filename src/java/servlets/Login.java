@@ -88,7 +88,7 @@ public class Login extends HttpServlet {
                    break;
                    case "cerrar":
                         request.getSession().setAttribute("usu", "");
-                        response.sendRedirect("index.jsp");
+                        response.sendRedirect("../index.jsp");
                     break;
             
         }
